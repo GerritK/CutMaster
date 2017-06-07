@@ -49,7 +49,6 @@ export class BarCuttingComponent {
       let remaining = this.getRemainingLength(currentBar);
 
       while (remaining >= minPartLength + this.smallestRemnant && partsToCut.length > 0) {
-        console.log(partsToCut);
         const part = this.getPartWithBestRatio(partsToCut, remaining);
         const index = this.parts.indexOf(part);
 
@@ -113,7 +112,7 @@ export class BarCuttingComponent {
     let lowestRatio = 2;
 
     for(const part of parts) {
-      if(this.needToCut(part)) {
+      if(this.needToCut(part) && length > part.length) {
         ratio = length / (part.length + this.sawBlade) % 1;
         if(ratio < lowestRatio) {
           lowestRatio = ratio;
