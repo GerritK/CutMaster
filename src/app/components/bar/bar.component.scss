@@ -25,6 +25,12 @@ td.numeric {
   text-align: right;
 }
 
+tr.small {
+  font-size: 80%;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.38);
+}
+
 @mixin bar-theme($theme) {
   $primary: map-get($theme, primary);
   $background: map-get($theme, background);
