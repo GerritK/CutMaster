@@ -15,7 +15,7 @@ export class BarComponent {
   }
 
   getPartTitle(part) {
-    if(part.title != null && part.title.length > 0) {
+    if (part.title != null && part.title.length > 0) {
       return part.title;
     }
     return 'Part #' + part.index;
@@ -24,7 +24,7 @@ export class BarComponent {
   getWaste() {
     let sum = 0;
 
-    for(const part of this.data.parts) {
+    for (const part of this.data.parts) {
       sum += part.length * part.quantity;
     }
     sum += this.data.remnant;
