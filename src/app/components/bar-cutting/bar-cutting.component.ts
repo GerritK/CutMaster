@@ -38,14 +38,14 @@ export class BarCuttingComponent {
     const result = [];
     let currentBar = [];
     const calculatedParts = [];
-    for(const part of this.parts) {
+    for (const part of this.parts) {
       const index = this.parts.indexOf(part);
       calculatedParts[index] = 0;
     }
 
     let partsToCut = this.getPartsToCut(calculatedParts);
     let minPartLength = this.getMinPartLength(partsToCut);
-    while(partsToCut.length > 0) {
+    while (partsToCut.length > 0) {
       let remaining = this.getRemainingLength(currentBar);
 
       while (remaining >= minPartLength + this.smallestRemnant && partsToCut.length > 0) {
@@ -53,7 +53,7 @@ export class BarCuttingComponent {
         const index = this.parts.indexOf(part);
 
         const partInBar = currentBar.find((part) => part.index === index);
-        if(partInBar == null) {
+        if (partInBar == null) {
           currentBar.push({index: index, length: part.length, quantity: 1});
         } else {
           partInBar.quantity++;
@@ -87,7 +87,7 @@ export class BarCuttingComponent {
   private getRemainingLength(bar) {
     let length = 0;
 
-    for(const part of bar) {
+    for (const part of bar) {
       length += (part.length + this.sawBlade) * part.quantity;
     }
 
@@ -97,8 +97,8 @@ export class BarCuttingComponent {
   private getMinPartLength(parts) {
     let result = 0;
 
-    for(const part of parts) {
-      if(result === 0 || part.length < result) {
+    for (const part of parts) {
+      if (result === 0 || part.length < result) {
         result = part.length;
       }
     }
@@ -111,10 +111,10 @@ export class BarCuttingComponent {
     let ratio = 0;
     let lowestRatio = 2;
 
-    for(const part of parts) {
-      if(this.needToCut(part) && length > part.length) {
+    for (const part of parts) {
+      if (this.needToCut(part) && length > part.length) {
         ratio = length / (part.length + this.sawBlade) % 1;
-        if(ratio < lowestRatio) {
+        if (ratio < lowestRatio) {
           lowestRatio = ratio;
           result = part;
         }
