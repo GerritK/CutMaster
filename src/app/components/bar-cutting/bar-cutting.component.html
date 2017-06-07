@@ -1,0 +1,80 @@
+<md-card>
+  <md-card-title>
+    <md-icon>build</md-icon>
+    Saw Setup
+  </md-card-title>
+
+  <table style="width: 100%">
+    <tr>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Extrusion Length" type="number" [(ngModel)]="extrusionLength">
+          <span mdSuffix>mm</span>
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Saw Blade Thickness" type="number" [(ngModel)]="sawBlade">
+          <span mdSuffix>mm</span>
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Smallest Remnant" type="number" [(ngModel)]="smallestRemnant">
+          <span mdSuffix>mm</span>
+        </md-input-container>
+      </td>
+    </tr>
+  </table>
+</md-card>
+
+<md-card>
+  <md-card-title>
+    <md-icon>list</md-icon>
+    Part List
+  </md-card-title>
+
+  <table style="width: 100%">
+    <tr *ngFor="let part of parts">
+      <td>
+        <md-checkbox [(ngModel)]="part.enabled"></md-checkbox>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Part Name" [(ngModel)]="part.name" [disabled]="!part.enabled">
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Length" type="number" [(ngModel)]="part.length" [disabled]="!part.enabled">
+          <span mdSuffix>mm</span>
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Quantity" type="number" [(ngModel)]="part.quantity" [disabled]="!part.enabled">
+        </md-input-container>
+      </td>
+      <td>
+        <button md-icon-button (click)="removePart(part)">
+          <md-icon>remove</md-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+  <button md-fab color="primary" (click)="addPart()">
+    <md-icon>add</md-icon>
+  </button>
+  <button md-fab (click)="calculate()">
+    <md-icon>check</md-icon>
+  </button>
+</md-card>
+<p></p>
+<md-card *ngIf="result.length > 0">
+  <md-card-title>
+    <md-icon>line_style</md-icon>
+    Result
+  </md-card-title>
+
+  <cm-bar *ngFor="let bar of result; let i = index" [data]="bar" [length]="extrusionLength" [index]="i"></cm-bar>
+</md-card>

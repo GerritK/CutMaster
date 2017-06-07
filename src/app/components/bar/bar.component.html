@@ -1,0 +1,30 @@
+<md-card>
+  <md-card-title>Bar #{{index}}</md-card-title>
+
+  <div class="diagram">
+    <ng-container *ngFor="let part of data.parts">
+      <div *ngFor="let numberOfPart of getPartArray(part)" class="part" [class.odd]="part.index % 2 === 1"
+           [class.remnant]="part.index === -1" [style.width]="(part.length / length) * 100 + '%'"
+           [mdTooltip]="getPartTitle(part)" mdTooltipPosition="above"></div>
+    </ng-container>
+  </div>
+
+  <hr>
+
+  <table>
+    <tbody>
+    <tr *ngFor="let part of data.parts">
+      <th>{{part.quantity}}x {{getPartTitle(part)}}</th>
+      <td class="numeric">{{part.length | number:'.1-1'}}mm</td>
+    </tr>
+    <tr>
+      <th>Remnant</th>
+      <td class="numeric">{{data.remnant | number:'.1-1'}}mm</td>
+    </tr>
+    <tr>
+      <th>Waste</th>
+      <td class="numeric">{{getWaste() | number:'.1-1'}}mm</td>
+    </tr>
+    </tbody>
+  </table>
+</md-card>

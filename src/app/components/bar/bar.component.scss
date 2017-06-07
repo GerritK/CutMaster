@@ -1,0 +1,44 @@
+@import '~@angular/material/theming';
+
+.diagram {
+  height: 10px;
+  display: flex;
+  margin: 0 10px;
+}
+
+.part {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+th {
+  font-weight: 700;
+}
+
+tbody th {
+  text-align: left;
+}
+
+td.numeric {
+  text-align: right;
+}
+
+@mixin bar-theme($theme) {
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+
+  .diagram {
+    background-color: mat-color($primary, A100);
+  }
+
+  .part {
+    border-right: 1px solid mat-color($background, card);
+    background-color: mat-color($primary);
+  }
+
+  .part.odd {
+    background-color: mat-color($primary, 700);
+  }
+}
