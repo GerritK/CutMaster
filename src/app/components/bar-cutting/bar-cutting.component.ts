@@ -90,6 +90,22 @@ export class BarCuttingComponent {
     FileSaver.saveAs(data, 'cutmaster-parts.json');
   }
 
+  onFileChange(e) {
+    const file = e.srcElement.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(reader.result);
+        this.parts = data;
+      } catch (e) {
+
+      }
+    };
+
+    reader.readAsText(file);
+  }
+
   private getRemainingLength(bar) {
     let length = 0;
 

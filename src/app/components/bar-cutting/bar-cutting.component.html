@@ -34,6 +34,19 @@
   <md-card-title>
     <md-icon>list</md-icon>
     Part List
+
+    <div style="float: right; text-align: right;">
+      <button md-icon-button (click)="addPart()">
+        <md-icon>add</md-icon>
+      </button>
+      <button md-icon-button (click)="download()">
+        <md-icon>file_download</md-icon>
+      </button>
+      <button md-icon-button (click)="fileUpload.click()">
+        <md-icon>file_upload</md-icon>
+      </button>
+      <input type="file" hidden (change)="onFileChange($event)" #fileUpload>
+    </div>
   </md-card-title>
 
   <table style="width: 100%">
@@ -65,17 +78,11 @@
     </tr>
   </table>
 
-  <div class="buttons">
-    <button md-fab color="primary" (click)="addPart()">
-      <md-icon>add</md-icon>
-    </button>
-    <button md-fab color="primary" (click)="download()">
-      <md-icon>file_download</md-icon>
-    </button>
-    <button md-fab (click)="calculate()">
+  <md-card-actions class="buttons">
+    <button md-fab color="accent" (click)="calculate()">
       <md-icon>check</md-icon>
     </button>
-  </div>
+  </md-card-actions>
 </md-card>
 <p></p>
 <md-card *ngIf="result.length > 0">
