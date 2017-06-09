@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'cm-bar-cutting',
@@ -82,6 +83,11 @@ export class BarCuttingComponent {
     }
 
     this.result = result;
+  }
+
+  download() {
+    const data = new Blob([JSON.stringify(this.parts)], {type: 'application/json;charset=utf-8'});
+    FileSaver.saveAs(data, 'cutmaster-parts.json');
   }
 
   private getRemainingLength(bar) {

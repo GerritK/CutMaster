@@ -28,6 +28,8 @@
   </table>
 </md-card>
 
+<p></p>
+
 <md-card>
   <md-card-title>
     <md-icon>list</md-icon>
@@ -62,12 +64,18 @@
       </td>
     </tr>
   </table>
-  <button md-fab color="primary" (click)="addPart()">
-    <md-icon>add</md-icon>
-  </button>
-  <button md-fab (click)="calculate()">
-    <md-icon>check</md-icon>
-  </button>
+
+  <div class="buttons">
+    <button md-fab color="primary" (click)="addPart()">
+      <md-icon>add</md-icon>
+    </button>
+    <button md-fab color="primary" (click)="download()">
+      <md-icon>file_download</md-icon>
+    </button>
+    <button md-fab (click)="calculate()">
+      <md-icon>check</md-icon>
+    </button>
+  </div>
 </md-card>
 <p></p>
 <md-card *ngIf="result.length > 0">
