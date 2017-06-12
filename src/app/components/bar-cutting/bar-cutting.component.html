@@ -91,5 +91,7 @@
     Result
   </md-card-title>
 
+  Number of Bars: {{result.length}}<br/>
+
   <cm-bar *ngFor="let bar of result; let i = index" [data]="bar" [length]="extrusionLength" [index]="i"></cm-bar>
 </md-card>
