@@ -7,7 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class BarComponent {
   @Input('index') index: number;
-  @Input('length') length: number;
   @Input('data') data;
 
   getPartArray(part) {
@@ -29,6 +28,6 @@ export class BarComponent {
     }
     sum += this.data.remnant;
 
-    return this.length - sum;
+    return this.data.length - sum;
   }
 }

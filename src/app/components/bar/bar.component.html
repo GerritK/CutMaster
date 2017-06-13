@@ -1,10 +1,10 @@
 <md-card>
-  <md-card-title>Bar #{{index + 1}}</md-card-title>
+  <md-card-title>{{data.isRemnant ? 'Remnant' : 'Bar'}} #{{index + 1}} {{data.length | number:'.1-1'}}mm</md-card-title>
 
   <div class="diagram">
     <ng-container *ngFor="let part of data.parts; let i = index">
       <div *ngFor="let numberOfPart of getPartArray(part)" class="part" [class.odd]="i % 2 === 1"
-           [class.remnant]="part.index === -1" [style.width]="(part.length / length) * 100 + '%'"
+           [class.remnant]="part.index === -1" [style.width]="(part.length / data.length) * 100 + '%'"
            [mdTooltip]="getPartTitle(part)" mdTooltipPosition="above"></div>
     </ng-container>
   </div>

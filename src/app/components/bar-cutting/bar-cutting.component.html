@@ -32,6 +32,44 @@
 
 <md-card>
   <md-card-title>
+    Remnants
+
+    <div style="float: right; text-align: right;">
+      <button md-icon-button (click)="addRemnant()">
+        <md-icon>add</md-icon>
+      </button>
+    </div>
+  </md-card-title>
+
+  <table style="width: 100%;">
+    <tr *ngFor="let remnant of remnants">
+      <td>
+        <md-checkbox [(ngModel)]="remnant.enabled"></md-checkbox>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Length" type="number" [(ngModel)]="remnant.length" [disabled]="!remnant.enabled">
+          <span mdSuffix>mm</span>
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="Quantity" type="number" [(ngModel)]="remnant.quantity" [disabled]="!remnant.enabled">
+        </md-input-container>
+      </td>
+      <td>
+        <button md-icon-button (click)="removeRemnant(remnant)">
+          <md-icon>remove</md-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+</md-card>
+
+<p></p>
+
+<md-card>
+  <md-card-title>
     <md-icon>list</md-icon>
     Part List
 
@@ -93,5 +131,5 @@
 
   Number of Bars: {{result.length}}<br/>
 
-  <cm-bar *ngFor="let bar of result; let i = index" [data]="bar" [length]="extrusionLength" [index]="i"></cm-bar>
+  <cm-bar *ngFor="let bar of result; let i = index" [data]="bar" [index]="i"></cm-bar>
 </md-card>

@@ -11,6 +11,10 @@ export class BarCuttingComponent {
   sawBlade = 3.2;
   smallestRemnant = 0;
 
+  remnants = [
+    {length: 1520, quantity: 1, enabled: true}
+  ];
+
   parts = [
     {name: '', length: 0, quantity: 0, enabled: true}
   ];
@@ -35,8 +39,23 @@ export class BarCuttingComponent {
     return this.parts[index];
   }
 
+  addRemnant() {
+    this.remnants.push({
+      length: 0,
+      quantity: 0,
+      enabled: true
+    });
+  }
+
+  removeRemnant(remnant) {
+    const index = this.remnants.indexOf(remnant);
+    this.remnants.splice(index, 1);
+  }
+
   calculate() {
     const result = [];
+    let remnantId = 0;
+    let barLength = this.extrusionLength;
     let currentBar = [];
     const calculatedParts = [];
     for (const part of this.parts) {
@@ -47,7 +66,12 @@ export class BarCuttingComponent {
     let partsToCut = this.getPartsToCut(calculatedParts);
     let minPartLength = this.getMinPartLength(partsToCut);
     while (partsToCut.length > 0) {
-      let remaining = this.getRemainingLength(currentBar);
+      if (remnantId < this.remnants.length) {
+        barLength = this.remnants[remnantId].length;
+      } else {
+        barLength = this.extrusionLength;
+      }
+      let remaining = this.getRemainingLength(currentBar, barLength);
 
       while (remaining >= minPartLength + this.smallestRemnant && partsToCut.length > 0) {
         const part = this.getPartWithBestRatio(partsToCut, remaining);
@@ -61,7 +85,7 @@ export class BarCuttingComponent {
         }
         calculatedParts[index]++;
 
-        remaining = this.getRemainingLength(currentBar);
+        remaining = this.getRemainingLength(currentBar, barLength);
         partsToCut = this.getPartsToCut(calculatedParts);
         minPartLength = this.getMinPartLength(partsToCut);
       }
@@ -76,12 +100,14 @@ export class BarCuttingComponent {
         };
       });
       result.push({
+        isRemnant: barLength !== this.extrusionLength,
+        length: barLength,
         remnant: remaining,
         parts: barData
       });
       currentBar = [];
+      remnantId++;
     }
-
     this.result = result;
   }
 
@@ -106,14 +132,14 @@ export class BarCuttingComponent {
     reader.readAsText(file);
   }
 
-  private getRemainingLength(bar) {
+  private getRemainingLength(bar, totalLength) {
     let length = 0;
 
     for (const part of bar) {
       length += (part.length + this.sawBlade) * part.quantity;
     }
 
-    return this.extrusionLength - length;
+    return totalLength - length;
   }
 
   private getMinPartLength(parts) {
