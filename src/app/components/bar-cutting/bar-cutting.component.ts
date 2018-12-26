@@ -90,14 +90,13 @@ export class BarCuttingComponent {
     FileSaver.saveAs(data, 'cutmaster-parts.json');
   }
 
-  onFileChange(e) {
-    const file = e.srcElement.files[0];
+  onFileChange(event) {
+    const file = event.srcElement.files[0];
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = () => {
       try {
-        const data = JSON.parse(reader.result);
-        this.parts = data;
+        this.parts = JSON.parse(<string> reader.result);
       } catch (e) {
 
       }

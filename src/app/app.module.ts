@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {
-  MdButtonModule, MdCardModule, MdCheckboxModule, MdIconModule, MdInputModule, MdListModule,
-  MdToolbarModule, MdTooltipModule
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatListModule,
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {BarCuttingComponent} from './components/bar-cutting/bar-cutting.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -21,14 +21,14 @@ import {BarComponent} from './components/bar/bar.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MdToolbarModule,
-    MdCardModule,
-    MdInputModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MdIconModule,
-    MdTooltipModule,
-    MdListModule
+    MatToolbarModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
