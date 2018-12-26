@@ -1,11 +1,11 @@
-<md-card>
-  <md-card-title>Bar #{{index + 1}}</md-card-title>
+<mat-card>
+  <mat-card-title>Bar #{{index + 1}}</mat-card-title>
 
   <div class="diagram">
     <ng-container *ngFor="let part of data.parts; let i = index">
       <div *ngFor="let numberOfPart of getPartArray(part)" class="part" [class.odd]="i % 2 === 1"
            [class.remnant]="part.index === -1" [style.width]="(part.length / length) * 100 + '%'"
-           [mdTooltip]="getPartTitle(part)" mdTooltipPosition="above"></div>
+           [matTooltip]="getPartTitle(part)" matTooltipPosition="above"></div>
     </ng-container>
   </div>
 
@@ -27,4 +27,4 @@
     </tr>
     </tbody>
   </table>
-</md-card>
+</mat-card>

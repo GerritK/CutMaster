@@ -1,97 +1,97 @@
-<md-card>
-  <md-card-title>
-    <md-icon>build</md-icon>
+<mat-card>
+  <mat-card-title>
+    <mat-icon>build</mat-icon>
     Saw Setup
-  </md-card-title>
+  </mat-card-title>
 
   <table style="width: 100%">
     <tr>
       <td>
-        <md-input-container>
-          <input mdInput placeholder="Extrusion Length" type="number" [(ngModel)]="extrusionLength">
-          <span mdSuffix>mm</span>
-        </md-input-container>
+        <mat-form-field>
+          <input matInput placeholder="Extrusion Length" type="number" [(ngModel)]="extrusionLength">
+          <span matSuffix>mm</span>
+        </mat-form-field>
       </td>
       <td>
-        <md-input-container>
-          <input mdInput placeholder="Saw Blade Thickness" type="number" [(ngModel)]="sawBlade">
-          <span mdSuffix>mm</span>
-        </md-input-container>
+        <mat-form-field>
+          <input matInput placeholder="Saw Blade Thickness" type="number" [(ngModel)]="sawBlade">
+          <span matSuffix>mm</span>
+        </mat-form-field>
       </td>
       <td>
-        <md-input-container>
-          <input mdInput placeholder="Smallest Remnant" type="number" [(ngModel)]="smallestRemnant">
-          <span mdSuffix>mm</span>
-        </md-input-container>
+        <mat-form-field>
+          <input matInput placeholder="Smallest Remnant" type="number" [(ngModel)]="smallestRemnant">
+          <span matSuffix>mm</span>
+        </mat-form-field>
       </td>
     </tr>
   </table>
-</md-card>
+</mat-card>
 
 <p></p>
 
-<md-card>
-  <md-card-title>
-    <md-icon>list</md-icon>
+<mat-card>
+  <mat-card-title>
+    <mat-icon>list</mat-icon>
     Part List
 
     <div style="float: right; text-align: right;">
-      <button md-icon-button (click)="addPart()">
-        <md-icon>add</md-icon>
+      <button mat-icon-button (click)="addPart()">
+        <mat-icon>add</mat-icon>
       </button>
-      <button md-icon-button (click)="download()">
-        <md-icon>file_download</md-icon>
+      <button mat-icon-button (click)="download()">
+        <mat-icon>file_download</mat-icon>
       </button>
-      <button md-icon-button (click)="fileUpload.click()">
-        <md-icon>file_upload</md-icon>
+      <button mat-icon-button (click)="fileUpload.click()">
+        <mat-icon>file_upload</mat-icon>
       </button>
       <input type="file" hidden (change)="onFileChange($event)" #fileUpload>
     </div>
-  </md-card-title>
+  </mat-card-title>
 
   <table style="width: 100%">
     <tr *ngFor="let part of parts">
       <td>
-        <md-checkbox [(ngModel)]="part.enabled"></md-checkbox>
+        <mat-checkbox [(ngModel)]="part.enabled"></mat-checkbox>
       </td>
       <td>
-        <md-input-container>
-          <input mdInput placeholder="Part Name" [(ngModel)]="part.name" [disabled]="!part.enabled">
-        </md-input-container>
+        <mat-form-field>
+          <input matInput placeholder="Part Name" [(ngModel)]="part.name" [disabled]="!part.enabled">
+        </mat-form-field>
       </td>
       <td>
-        <md-input-container>
-          <input mdInput placeholder="Length" type="number" [(ngModel)]="part.length" [disabled]="!part.enabled">
-          <span mdSuffix>mm</span>
-        </md-input-container>
+        <mat-form-field>
+          <input matInput placeholder="Length" type="number" [(ngModel)]="part.length" [disabled]="!part.enabled">
+          <span matSuffix>mm</span>
+        </mat-form-field>
       </td>
       <td>
-        <md-input-container>
-          <input mdInput placeholder="Quantity" type="number" [(ngModel)]="part.quantity" [disabled]="!part.enabled">
-        </md-input-container>
+        <mat-form-field>
+          <input matInput placeholder="Quantity" type="number" [(ngModel)]="part.quantity" [disabled]="!part.enabled">
+        </mat-form-field>
       </td>
       <td>
-        <button md-icon-button (click)="removePart(part)">
-          <md-icon>remove</md-icon>
+        <button mat-icon-button (click)="removePart(part)">
+          <mat-icon>remove</mat-icon>
         </button>
       </td>
     </tr>
   </table>
 
-  <md-card-actions class="buttons">
-    <button md-fab color="accent" (click)="calculate()">
-      <md-icon>check</md-icon>
+  <mat-card-actions class="buttons">
+    <button mat-fab color="accent" (click)="calculate()">
+      <mat-icon>check</mat-icon>
     </button>
-  </md-card-actions>
-</md-card>
+  </mat-card-actions>
+</mat-card>
 <p></p>
-<md-card *ngIf="result.length > 0">
-  <md-card-title>
-    <md-icon>line_style</md-icon>
+<mat-card *ngIf="result.length > 0">
+  <mat-card-title>
+    <mat-icon>line_style</mat-icon>
     Result
-  </md-card-title>
+  </mat-card-title>
 
   Number of Bars: {{result.length}}<br/>
 
   <cm-bar *ngFor="let bar of result; let i = index" [data]="bar" [length]="extrusionLength" [index]="i"></cm-bar>
-</md-card>
+</mat-card>

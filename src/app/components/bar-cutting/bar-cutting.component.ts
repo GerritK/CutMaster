@@ -53,7 +53,7 @@ export class BarCuttingComponent {
         const part = this.getPartWithBestRatio(partsToCut, remaining);
         const index = this.parts.indexOf(part);
 
-        const partInBar = currentBar.find((part) => part.index === index);
+        const partInBar = currentBar.find((p) => p.index === index);
         if (partInBar == null) {
           currentBar.push({index: index, length: part.length, quantity: 1});
         } else {
